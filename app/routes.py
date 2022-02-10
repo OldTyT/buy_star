@@ -2,14 +2,11 @@
 from flask import render_template, flash, redirect, send_file, safe_join, send_from_directory, url_for, abort, request
 import qrcode
 from app import app
-import json
 from app.models import *
 from app.forms import cosmic_print, cosmic_download
-from datetime import timezone
 from PIL import Image, ImageDraw, ImageFont
 from slugify import slugify
 import os
-import shutil
 from textwrap import fill
 from config import Config
 
@@ -32,11 +29,11 @@ def cosmic_body(cosmic_id):
     if db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all() != []:
         form = db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all()[0]
         if cosmic_download().validate_on_submit():
-            temp_dir = '/tmp'
-            #try:
-            #    os.mkdir(temp_dir)
-            #except OSError as e:
-            #    print(e)
+            temp_dir = 'app/static/temp'
+            try:
+                os.mkdir(temp_dir)
+            except OSError as e:
+                print(e)
             img = Image.open('app/template.png')
             font = ImageFont.truetype(f"app/font/DISTANT_STROKE_MEDIUM.OTF", size=350)
             idraw = ImageDraw.Draw(img)

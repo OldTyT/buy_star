@@ -29,6 +29,10 @@ def cosmic_body(cosmic_id):
     if db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all() != []:
         form = db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all()[0]
         if cosmic_download().validate_on_submit():
+            try:
+                return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
+            except:
+                pass
             temp_dir = 'app/static/temp'
             try:
                 os.mkdir(temp_dir)
@@ -38,12 +42,12 @@ def cosmic_body(cosmic_id):
             font = ImageFont.truetype(f"app/font/DISTANT_STROKE_MEDIUM.OTF", size=350)
             idraw = ImageDraw.Draw(img)
             MAX_W, MAX_H = img.size
-            text = f"{slugify(form.first_name)} {slugify(form.last_name)}"
+            text = f"{slugify(form.first_name, lowercase=False)} {slugify(form.last_name, lowercase=False)}"
             w, h = idraw.textsize(text, font=font)
             x = (MAX_W - w) / 2
             y = (MAX_H - h) / 2
             idraw.text((x, y + 170), text, (49, 52, 76), font=font, align="center")
-            text = fill(f"This certificate confirms that a {slugify(form.first_name)} {slugify(form.last_name)} has the right to own planet {slugify(form.name_cosmic)}", 70)
+            text = fill(f"This certificate confirms that a {slugify(form.last_name, lowercase=False)} {slugify(form.first_name, lowercase=False)} has the right to own planet {slugify(form.name_cosmic, lowercase=False)}", 70)
             font = ImageFont.truetype(f"app/font/DISTANT_STROKE.OTF", size=120)
             w, h = idraw.textsize(text, font=font)
             x = (MAX_W - w) / 2

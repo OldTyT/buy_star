@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница сертификата</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="certificate.css">
+</head>
+<body>
+<div class="background" style="z-index: -2;text-align: center">
+    <div id="sphere-wrap">
+        <canvas id="sphere"></canvas>
+    </div>
+</div>
+
+<!--<div class="background"></div>-->
+<video class="background" preload="auto" autoplay loop playsinline muted>
+    <source src="background.mp4" type="video/mp4" />
+</video>
+
+<form action="#" id="certificateUser" class="form">
+    <h2 class="title">Сертификат № <span id="id"></span></h2>
+    <div class="form-item">
+        <span class="form-item__label">Планета:</span>
+        <span class="bold" id="planet_name"></span>
+    </div>
+    <div class="form-item">
+        <span class="form-item__label">Имя:</span>
+        <span class="bold" id="first_name"></span>
+    </div>
+    <div class="form-item">
+        <span class="form-item__label">Фамилия:</span>
+        <span class="bold" id="last_name"></span>
+    </div>
+    <div class="form-item">
+        <span class="form-item__label">Дата создания:</span>
+        <span class="bold" id="date"></span>
+    </div>
+    <div class="form-item">
+        <button type="button" class="download" onclick="">
+            Скачать
+        </button>
+    </div>
+</form>
+<script src="script.js"></script>
+<script>
+    document.querySelector('#id').innerHTML = localStorage.getItem('id')
+    document.querySelector('#first_name').innerHTML = localStorage.getItem('first_name')
+    document.querySelector('#last_name').innerHTML = localStorage.getItem('last_name')
+    document.querySelector('#planet_name').innerHTML = localStorage.getItem('planet_name')
+    document.querySelector('#date').innerHTML = localStorage.getItem('date')
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Сертификат</h1>
+    <form action="" method="post" novalidate>
+        <p>
+            cosmic_id<br>
+            {{ form.cosmic_id }}
+        </p>
+        <p>
+            first_name<br>
+            {{ form.first_name }}
+        </p>
+        <p>
+            last_name<br>
+            {{ form.last_name }}
+        </p>
+        <p>
+            datetime<br>
+            {{ form.datetime }}
+        </p>
+        <p>
+            name_cosmic<br>
+            {{ form.name_cosmic }}
+        </p>
+    </form>
+{% endblock %}

@@ -1,12 +1,16 @@
-<html>
-    <head>
-      {% if title %}
-      <title>{{ title }} - Мой сайт</title>
-      {% else %}
-      <title>Добро пожаловать на мой сайт</title>
-      {% endif %}
-    </head>
-    <body>
-        {% block content %}{% endblock %}
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }} - Cosmics</title>
+    {% else %}
+    <title>Cosmics</title>
+    {% endif %}
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/certificate.css">
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
 </html>

@@ -12,4 +12,4 @@ class cosmic_print(FlaskForm):
 
 
 class cosmic_download(FlaskForm):
-    submit = SubmitField('Скачать')
+    submit = SubmitField('Посмотреть подробно')

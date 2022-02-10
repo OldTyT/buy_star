@@ -1,25 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Страница сертификата</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/certificate.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 <div class="background" style="z-index: -2;text-align: center">
     <div id="sphere-wrap">
         <canvas id="sphere"></canvas>
     </div>
 </div>
-
-<!--<div class="background"></div>-->
 <video class="background" preload="auto" autoplay loop playsinline muted>
     <source src="../static/background.mp4" type="video/mp4" />
 </video>
-
 <form id="certificateUser" class="form" action="" method="post" novalidate>
     <h2 class="title">Сертификат № <span id="id">{{ form.cosmic_id }}</span></h2>
     <div class="form-item">
@@ -43,5 +31,4 @@
     </div>
 </form>
 <script src="../static/script.js"></script>
-</body>
-</html>
+{% endblock %}

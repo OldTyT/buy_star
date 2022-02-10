@@ -74,8 +74,8 @@ def cosmic_body(cosmic_id):
             water_height = height - height2 - 285
             img.paste(qr_code, (water_widht, water_height))
             img.save(f'{temp_dir}/{form.cosmic_id}.png', quality=100)
-            return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'))
-            #return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
+            #return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'))
+            return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
         return render_template('certificate.html', form=form, cosmic_download=cosmic_download(), title="Страница сертификата")
     else:
         abort(404)

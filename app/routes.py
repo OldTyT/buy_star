@@ -13,7 +13,6 @@ import shutil
 from textwrap import fill
 from config import Config
 
-
 @app.route('/good')
 def good():
     return 'Форму принял!'
@@ -33,11 +32,11 @@ def cosmic_body(cosmic_id):
     if db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all() != []:
         form = db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all()[0]
         if cosmic_download().validate_on_submit():
-            temp_dir = 'app/static/temp'
-            try:
-                os.mkdir(temp_dir)
-            except OSError as e:
-                print(e)
+            temp_dir = '/tmp'
+            #try:
+            #    os.mkdir(temp_dir)
+            #except OSError as e:
+            #    print(e)
             img = Image.open('app/template.png')
             font = ImageFont.truetype(f"app/font/DISTANT_STROKE_MEDIUM.OTF", size=350)
             idraw = ImageDraw.Draw(img)
@@ -75,8 +74,8 @@ def cosmic_body(cosmic_id):
             water_height = height - height2 - 285
             img.paste(qr_code, (water_widht, water_height))
             img.save(f'{temp_dir}/{form.cosmic_id}.png', quality=100)
-            #return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'))
-            return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
+            return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'))
+            #return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
         return render_template('certificate.html', form=form, cosmic_download=cosmic_download(), title="Страница сертификата")
     else:
         abort(404)

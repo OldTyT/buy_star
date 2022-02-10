@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, flash, redirect, send_file, safe_join, send_from_directory, url_for, abort
+from flask import render_template, flash, redirect, send_file, safe_join, send_from_directory, url_for, abort, request
+import qrcode
 from app import app
 import json
 from app.models import *
@@ -10,11 +11,7 @@ from slugify import slugify
 import os
 import shutil
 from textwrap import fill
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return 'Hello, world'
+from config import Config
 
 
 @app.route('/good')
@@ -60,10 +57,30 @@ def cosmic_body(cosmic_id):
             x = (MAX_W - w) / 2
             y = (MAX_H - h) / 2
             idraw.text((x, y + 450), text, (76, 78, 82), font=font, align="center")
+            font = ImageFont.truetype(f"app/font/SOUVENIR_NORMAL_0.TTF", size=50)
+            text = form.datetime.strftime('%Y/%m/%d')
+            w, h = idraw.textsize(text, font=font)
+            x = (MAX_W - w) / 2
+            y = (MAX_H - h) / 2
+            idraw.text((x-500, y + 1350), text, (122, 151, 128), font=font, align="center")
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=10,
+                border=4,
+            )
+            qr.add_data(f'{Config.DOMAIN}cosmicBody_{cosmic_id}')
+            qr.make(fit=True)
+            qr_code = qr.make_image(fill_color="black", back_color="white")
+            qr_code.save("some_file.png")
+            (width, height) = img.size
+            (width2, height2) = qr_code.size
+            water_widht = width - width2 - 280
+            water_height = height - height2 - 285
+            img.paste(qr_code, (water_widht, water_height))
             img.save(f'{temp_dir}/{form.cosmic_id}.png', quality=100)
             return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'))
-            return redirect(url_for('good'))
-            return send_file(safe_join(f'static/temp/{form.cosmic_id}.pdf'), as_attachment=True)
+            #return send_file(safe_join(f'static/temp/{form.cosmic_id}.png'), as_attachment=True)
         return render_template('certificate.html', form=form, cosmic_download=cosmic_download(), title="Страница сертификата")
     else:
         abort(404)

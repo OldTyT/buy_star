@@ -1,6 +1,6 @@
 window.addEventListener("load", windowLoadHandler, false);
-let sphereRad = 500; // радиус
-let scale = 1.3; // масштаб
+let sphereRad = 600; // радиус
+let scale = 1; // масштаб
 function windowLoadHandler() {
     canvasApp();
 }

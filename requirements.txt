@@ -7,6 +7,7 @@ wtforms_alchemy
 sqlalchemy-migrate==0.13.0
 SQLAlchemy-Utils==0.37.8
 sqlparse==0.4.2
+Pillow==8.2.0
 validators==0.18.2
 Werkzeug==2.0.2
 WTForms==2.3.3
@@ -14,4 +15,4 @@ WTForms-Components==0.10.5
 requests==2.22.0
 gunicorn==20.1.0
 psycopg2-binary==2.9.1
-pdfkit==1.0.0
+python-slugify==5.0.2

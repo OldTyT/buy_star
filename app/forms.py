@@ -8,6 +8,7 @@ class cosmic_print(FlaskForm):
     last_name = StringField('last_name', validators=[DataRequired()])
     datetime = StringField('date')
     name_cosmic = StringField('name_cosmic', validators=[DataRequired()])
+    submit = SubmitField('Отправить форму')
 
 
 class cosmic_download(FlaskForm):

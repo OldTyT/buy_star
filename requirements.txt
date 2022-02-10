@@ -8,6 +8,7 @@ sqlalchemy-migrate==0.13.0
 SQLAlchemy-Utils==0.37.8
 sqlparse==0.4.2
 Pillow==8.2.0
+qrcode==7.3.1
 validators==0.18.2
 Werkzeug==2.0.2
 WTForms==2.3.3

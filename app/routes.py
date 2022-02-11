@@ -10,6 +10,10 @@ import os
 from textwrap import fill
 from config import Config
 
+@app.route('/favicon.ico', methods=['GET', 'POST'])
+def favicon():
+    return send_file(safe_join(f'static/favicon.png'))
+
 @app.route('/good')
 def good():
     return 'Форму принял!'

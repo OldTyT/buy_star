@@ -14,6 +14,11 @@ from config import Config
 def favicon():
     return send_file(safe_join(f'static/favicon.png'))
 
+@app.route('/')
+@app.route('/index')
+def index():
+    return 'COSMICS'
+
 @app.route('/good')
 def good():
     return 'Форму принял!'

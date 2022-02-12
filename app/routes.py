@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, flash, redirect, send_file, safe_join, send_from_directory, url_for, abort, request
 from app.forms import cosmic_print, cosmic_download
-from app.rnd_id import random_cosmic_id
 from app.certificate import cert
 from config import Config
 from app.models import *

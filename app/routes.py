@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, flash, redirect, send_file, safe_join, send_from_directory, url_for, abort, request
 from app.forms import cosmic_print, cosmic_download
+from app.rnd_id import random_cosmic_id
 from app.certificate import cert
 from config import Config
 from app.models import *
@@ -22,11 +23,13 @@ def index():
 def call():
     form = cosmic_print()
     if form.validate_on_submit():
-        db.session.add(
-            cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
+        try:
+            db.session.add(cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
+        except:
+            db.session.add(cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
         db.session.commit()
-        form = db.session.query(cosmic).filter(cosmic.first_name == (form.first_name.data) and cosmic.last_name == (form.last_name.data) and cosmic.name_cosmic == (form.name_cosmic.data)).all()[-1]
-        return f'<a href="{f"{Config.DOMAIN}cosmicBody_{form.cosmic_id}"}">{Config.DOMAIN}cosmicBody_{form.cosmic_id}</a>'
+        #form = db.session.query(cosmic).filter(cosmic.first_name == (form.first_name.data) and cosmic.last_name == (form.last_name.data) and cosmic.name_cosmic == (form.name_cosmic.data)).all()[-1]
+        #return f'<a href="{f"{Config.DOMAIN}cosmicBody_{form.cosmic_id}"}">{Config.DOMAIN}cosmicBody_{form.cosmic_id}</a>'
     return render_template('registration.html', form=form)
 
 

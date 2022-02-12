@@ -1,19 +1,10 @@
 from app import db
 from datetime import datetime
-import random
-
-
-def random_cosmic_id():
-    chars = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-    length = 10
-    password = ''
-    for i in range(length):
-        password += random.choice(chars)
-    return password
+from app.rnd_id import random_cosmic_id
 
 class cosmic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    cosmic_id = db.Column(db.String(), default=random_cosmic_id(),index=True, unique=True)
+    cosmic_id = db.Column(db.String(), default=random_cosmic_id, index=True, unique=True)
     first_name = db.Column(db.String(), index=True)
     last_name = db.Column(db.String(), index=True)
     datetime = db.Column(db.DateTime(), default=datetime.now, index=True)

@@ -40,15 +40,15 @@
     {{ form.hidden_tag() }}
     <div class="form-item">
         <label for="first_name" class="form-item__label">Имя</label>
-        {{ form.first_name(size=32) }}
+        {{ form.first_name(class='label_reg', size=32) }}
     </div>
     <div class="form-item">
         <label for="last_name" class="form-item__label">Фамилия</label>
-        {{ form.last_name(size=32) }}
+        {{ form.last_name(class='label_reg', size=32) }}
     </div>
     <div class="form-item">
         <label for="planet_name" class="form-item__label">Планета</label>
-        {{ form.name_cosmic(size=32) }}
+        {{ form.name_cosmic(class='label_reg', size=32) }}
     </div>
     <div class="form-item">
         <p>{{ form.submit(class="submit") }}</p>

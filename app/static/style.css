@@ -102,6 +102,10 @@ body {
     z-index: -2;
 }
 
+.label_reg{
+    color: #000000;
+}
+
 .submit {
     margin-top: 10px;
     text-align: center;

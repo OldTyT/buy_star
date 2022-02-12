@@ -26,7 +26,7 @@ def call():
             cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
         db.session.commit()
         form = db.session.query(cosmic).filter(cosmic.first_name == (form.first_name.data) and cosmic.last_name == (form.last_name.data) and cosmic.name_cosmic == (form.name_cosmic.data)).all()[-1]
-        return f'{Config.DOMAIN}cosmicBody_{form.cosmic_id}'
+        return f'<a href="{f"{Config.DOMAIN}cosmicBody_{form.cosmic_id}"}">{Config.DOMAIN}cosmicBody_{form.cosmic_id}</a>'
     return render_template('registration.html', form=form)
 
 

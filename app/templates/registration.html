@@ -1,59 +1,57 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Регистрация сертификата</title>
-    <link rel="stylesheet" href="registration.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-item:last-child {
+    margin-bottom: 0;
+}
+
+.form-item__label {
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.form-item__input {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 8px;
+}
+
+.form-item__input:hover {
+    border: 1px solid #5c5c5c;
+}
+
+.form-item__input:focus {
+    border: 1px solid #5c5c5c;
+}
+</style>
+<video class="background" preload="auto" autoplay loop playsinline muted>
+    <source src="../static/background.mp4" type="video/mp4" />
+</video>
 <div class="background"></div>
-<form action="#" id="registrationUser" class="form">
+<form id="registrationUser" class="form" action="" method="post" novalidate>
     <h2 class="title">Регистрация</h2>
+    {{ form.hidden_tag() }}
     <div class="form-item">
         <label for="first_name" class="form-item__label">Имя</label>
-        <input type="text" id="first_name" class="form-item__input" placeholder="first_name">
+        {{ form.first_name(size=32) }}
     </div>
     <div class="form-item">
         <label for="last_name" class="form-item__label">Фамилия</label>
-        <input type="text" id="last_name" class="form-item__input" placeholder="last_name">
+        {{ form.last_name(size=32) }}
     </div>
     <div class="form-item">
         <label for="planet_name" class="form-item__label">Планета</label>
-        <input type="text" id="planet_name" class="form-item__input" placeholder="planet_name">
+        {{ form.name_cosmic(size=32) }}
     </div>
     <div class="form-item">
-        <button type="submit" class="submit">
-            Отправить
-        </button>
+        <p>{{ form.submit(class="submit") }}</p>
     </div>
 </form>
-
-<script>
-    function getTime() {
-        const date = new Date(),
-            minutes = date.getMinutes(),
-            hours = date.getHours(),
-            seconds = date.getSeconds(),
-            year = date.getFullYear(),
-            day = date.getDate(),
-            month = date.getMonth()+1
-        return `${day<10?`0${day}`:day}.${month<10?`0${month}`:month}.${year} ${hours<10?`0${hours}`:hours}:${minutes<10?`0${minutes}`:minutes}:${seconds<10?`0${seconds}`:seconds}`;
-    }
-    function uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-    document.querySelector('#registrationUser').addEventListener('submit',function(e){
-        e.preventDefault()
-        localStorage.setItem('id',uuidv4())
-        localStorage.setItem('first_name',document.querySelector('#first_name').value)
-        localStorage.setItem('last_name',document.querySelector('#last_name').value)
-        localStorage.setItem('planet_name',document.querySelector('#planet_name').value)
-        localStorage.setItem('date',getTime())
-        window.location.href ='certificate.html'
-    })
-</script>
-</body>
-</html>
+{% endblock %}

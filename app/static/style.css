@@ -100,7 +100,19 @@ body {
 }
 #sphere {
     z-index: -2;
-    /*width: 100%;*/
-    /*background-color: #f2f2f2;*/
-    /*height: 100%;*/
+}
+
+.submit {
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, .5);
+    font-weight: bold;
+    color: #f2f2f2;
+    padding: 5px;
+    border: 2px solid rgba(0, 0, 0, .5);
+}
+
+.submit:hover {
+    border: 2px solid #5c5c5c;
 }

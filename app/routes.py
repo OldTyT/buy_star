@@ -5,17 +5,48 @@ from app.certificate import cert
 from config import Config
 from app.models import *
 from app import app
+import datetime
 
+
+USERS_AUTH = {}
+START_TIME_AUTH = []
+START_TIME_AUTH.append(datetime.datetime.now())
+TIME_SESSION = 60 #Время активной сессии юзера
+MAX_R = 20
+
+
+@app.route("/get_my_ip", methods=["GET"])
+def get_my_ip():
+    return request.remote_addr
+
+
+@app.before_request
+def hook():
+    time_auth = START_TIME_AUTH[0]
+    difference = datetime.datetime.now() - time_auth
+    if difference.seconds >= TIME_SESSION:
+        USERS_AUTH.clear()
+        START_TIME_AUTH[0] = datetime.datetime.now()
+    if USERS_AUTH.get(request.remote_addr):
+        USERS_AUTH.get(request.remote_addr)[1] += 1
+        if USERS_AUTH.get(request.remote_addr)[1] >= MAX_R:
+            return "503"
+        print(USERS_AUTH.get(request.remote_addr))
+    else:
+        data = []
+        data.append(datetime.datetime.now())
+        data.append(0)
+        USERS_AUTH.update({request.remote_addr: data})
 
 @app.route('/favicon.ico', methods=['GET', 'POST'])
 def favicon():
     return send_file(safe_join(f'static/favicon.png'))
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return 'COSMICS'
+#@app.route('/')
+#@app.route('/index')
+#def index():
+#    return 'COSMICS'
 
 
 @app.route('/cosm', methods=['GET', 'POST'])

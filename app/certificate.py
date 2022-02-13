@@ -15,7 +15,7 @@ def cert(form):
     img = Image.open('app/template.png')
     idraw = ImageDraw.Draw(img)
     MAX_W, MAX_H = img.size
-    text = f"{form.last_name} {form.first_name}"
+    text = f"{form.last_name} {form.first_name} {form.middle_name}"
     blank = Image.new('RGB', (1900, 500))
     fontsize = 100
     font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=fontsize)

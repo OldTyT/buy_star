@@ -24,13 +24,19 @@
         <span class="bold" id="planet_name">{{ form.name_cosmic }}</span>
     </div>
     <div class="form-item">
-        <span class="form-item__label">Имя:</span>
-        <span class="bold" id="first_name">{{ form.first_name }}</span>
-    </div>
-    <div class="form-item">
         <span class="form-item__label">Фамилия:</span>
         <span class="bold" id="last_name">{{ form.last_name }}</span>
     </div>
+    <div class="form-item">
+        <span class="form-item__label">Имя:</span>
+        <span class="bold" id="first_name">{{ form.first_name }}</span>
+    </div>
+    {% if form.middle_name %}
+    <div class="form-item">
+        <span class="form-item__label">Отчество:</span>
+        <span class="bold" id="middle_name">{{ form.middle_name }}</span>
+    </div>
+    {% endif %}
     <div class="form-item">
         <span class="form-item__label">Дата регистрации:</span>
         <span class="bold" id="date">{{ form.datetime.strftime('%Y-%m-%d') }}</span>

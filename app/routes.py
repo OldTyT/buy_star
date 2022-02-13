@@ -44,8 +44,8 @@ def favicon():
 #    return 'COSMICS'
 
 
-@app.route('/cosm', methods=['GET', 'POST'])
-def cosm():
+@app.route('/addCosmic', methods=['GET', 'POST'])
+def addCosmic():
     form = cosmic_print()
     if form.validate_on_submit():
         try:

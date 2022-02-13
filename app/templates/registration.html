@@ -39,12 +39,16 @@
     <h2 class="title">Регистрация</h2>
     {{ form.hidden_tag() }}
     <div class="form-item">
+        <label for="last_name" class="form-item__label">Фамилия</label>
+        {{ form.last_name(class='label_reg', size=32) }}
+    </div>
+    <div class="form-item">
         <label for="first_name" class="form-item__label">Имя</label>
         {{ form.first_name(class='label_reg', size=32) }}
     </div>
     <div class="form-item">
-        <label for="last_name" class="form-item__label">Фамилия</label>
-        {{ form.last_name(class='label_reg', size=32) }}
+        <label for="middle_name" class="form-item__label">Имя</label>
+        {{ form.middle_name(class='label_reg', size=32) }}
     </div>
     <div class="form-item">
         <label for="planet_name" class="form-item__label">Планета</label>

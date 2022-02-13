@@ -7,6 +7,7 @@ class cosmic(db.Model):
     cosmic_id = db.Column(db.String(), default=random_cosmic_id, index=True, unique=True)
     first_name = db.Column(db.String(), index=True)
     last_name = db.Column(db.String(), index=True)
+    middle_name = db.Column(db.String(), index=True)
     datetime = db.Column(db.DateTime(), default=datetime.now, index=True)
     name_cosmic = db.Column(db.String(), index=True)
 

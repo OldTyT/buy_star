@@ -4,8 +4,9 @@ from wtforms.validators import DataRequired, Length
 
 class cosmic_print(FlaskForm):
     cosmic_id = StringField('cosmic_id')
-    first_name = StringField('first_name', validators=[DataRequired()])
     last_name = StringField('last_name', validators=[DataRequired()])
+    first_name = StringField('first_name', validators=[DataRequired()])
+    middle_name = StringField('middle_name')
     datetime = StringField('date')
     name_cosmic = StringField('name_cosmic', validators=[DataRequired()])
     submit = SubmitField('Отправить форму')

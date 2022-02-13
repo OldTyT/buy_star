@@ -13,25 +13,15 @@ def cert(form):
     except OSError as e:
         print(e)
     img = Image.open('app/template.png')
-    #font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=300)
     idraw = ImageDraw.Draw(img)
     MAX_W, MAX_H = img.size
     text = f"{form.first_name} {form.last_name}"
-    #
-
-    #
-    # portion of image width you want text width to be
     blank = Image.new('RGB', (1900, 500))
     fontsize = 100
     font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=fontsize)
-
     while (font.getsize(text)[0] < blank.size[0]) and (font.getsize(text)[1] < blank.size[1]):
-        # iterate until the text size is just larger than the criteria
         fontsize += 1
         font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=fontsize)
-        #
-    print(fontsize)
-    #
     w, h = idraw.textsize(text, font=font)
     x = (MAX_W - w) / 2
     y = (MAX_H - h) / 2

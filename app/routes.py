@@ -18,8 +18,8 @@ def index():
     return 'COSMICS'
 
 
-@app.route('/call', methods=['GET', 'POST'])
-def call():
+@app.route('/cosm', methods=['GET', 'POST'])
+def cosm():
     form = cosmic_print()
     if form.validate_on_submit():
         try:

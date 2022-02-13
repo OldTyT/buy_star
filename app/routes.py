@@ -49,7 +49,7 @@ def addCosmic():
     form = cosmic_print()
     if form.validate_on_submit():
         try:
-            db.session.add(cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
+            db.session.add(cosmic(first_name=form.first_name.data, last_name=form.last_name.data, middle_name=form.middle_name.data, name_cosmic=form.name_cosmic.data))
         except:
             db.session.add(cosmic(first_name=form.first_name.data, last_name=form.last_name.data, name_cosmic=form.name_cosmic.data))
         db.session.commit()

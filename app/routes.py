@@ -15,11 +15,6 @@ TIME_SESSION = 60 #Время активной сессии юзера
 MAX_R = 20
 
 
-@app.route("/get_my_ip", methods=["GET"])
-def get_my_ip():
-    return request.headers.get('User-Agent')
-
-
 @app.before_request
 def hook():
     time_auth = START_TIME_AUTH[0]
@@ -31,7 +26,7 @@ def hook():
         USERS_AUTH.get(request.headers.get('User-Agent'))[1] += 1
         if USERS_AUTH.get(request.headers.get('User-Agent'))[1] >= MAX_R:
             return "503", 503
-        print(USERS_AUTH.get(request.headers.get('User-Agent')))
+        #print(USERS_AUTH.get(request.headers.get('User-Agent')))
     else:
         data = []
         data.append(datetime.datetime.now())

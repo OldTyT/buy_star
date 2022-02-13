@@ -25,7 +25,7 @@ def hook():
     if USERS_AUTH.get(request.headers.get('User-Agent')):
         USERS_AUTH.get(request.headers.get('User-Agent'))[1] += 1
         if USERS_AUTH.get(request.headers.get('User-Agent'))[1] >= MAX_R:
-            return "503", 503
+            return "Suspicious activity has been detected. Try again later.", 503
         #print(USERS_AUTH.get(request.headers.get('User-Agent')))
     else:
         data = []

@@ -17,7 +17,7 @@ def cert(form):
     MAX_W, MAX_H = img.size
     text = f"{form.last_name} {form.first_name} {form.middle_name}"
     blank = Image.new('RGB', (1900, 500))
-    fontsize = 100
+    fontsize = 1
     font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=fontsize)
     while (font.getsize(text)[0] < blank.size[0]) and (font.getsize(text)[1] < blank.size[1]):
         fontsize += 1

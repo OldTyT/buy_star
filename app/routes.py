@@ -15,23 +15,23 @@ TIME_SESSION = 60 #Время активной сессии юзера
 MAX_R = 20
 
 
-@app.before_request
-def hook():
-    time_auth = START_TIME_AUTH[0]
-    difference = datetime.datetime.now() - time_auth
-    if difference.seconds >= TIME_SESSION:
-        USERS_AUTH.clear()
-        START_TIME_AUTH[0] = datetime.datetime.now()
-    if USERS_AUTH.get(request.headers.get('User-Agent')):
-        USERS_AUTH.get(request.headers.get('User-Agent'))[1] += 1
-        if USERS_AUTH.get(request.headers.get('User-Agent'))[1] >= MAX_R:
-            return "Suspicious activity has been detected. Try again later.", 503
-        #print(USERS_AUTH.get(request.headers.get('User-Agent')))
-    else:
-        data = []
-        data.append(datetime.datetime.now())
-        data.append(0)
-        USERS_AUTH.update({request.headers.get('User-Agent'): data})
+# @app.before_request
+# def hook():
+#     time_auth = START_TIME_AUTH[0]
+#     difference = datetime.datetime.now() - time_auth
+#     if difference.seconds >= TIME_SESSION:
+#         USERS_AUTH.clear()
+#         START_TIME_AUTH[0] = datetime.datetime.now()
+#     if USERS_AUTH.get(request.headers.get('User-Agent')):
+#         USERS_AUTH.get(request.headers.get('User-Agent'))[1] += 1
+#         if USERS_AUTH.get(request.headers.get('User-Agent'))[1] >= MAX_R:
+#             return "Suspicious activity has been detected. Try again later.", 503
+#         #print(USERS_AUTH.get(request.headers.get('User-Agent')))
+#     else:
+#         data = []
+#         data.append(datetime.datetime.now())
+#         data.append(0)
+#         USERS_AUTH.update({request.headers.get('User-Agent'): data})
 
 @app.route('/favicon.ico', methods=['GET', 'POST'])
 def favicon():

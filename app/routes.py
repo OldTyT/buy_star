@@ -30,7 +30,7 @@ def hook():
     if USERS_AUTH.get(request.remote_addr):
         USERS_AUTH.get(request.remote_addr)[1] += 1
         if USERS_AUTH.get(request.remote_addr)[1] >= MAX_R:
-            return "503"
+            return "503", 503
         print(USERS_AUTH.get(request.remote_addr))
     else:
         data = []

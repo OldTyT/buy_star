@@ -59,7 +59,7 @@ def cosm():
     return render_template('registration.html', form=form)
 
 
-@app.route('/cosmicBody_<cosmic_id>', methods=['GET', 'POST'])
+@app.route('/cosmicBody/<cosmic_id>', methods=['GET', 'POST'])
 def cosmic_body(cosmic_id):
     if db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all():
         form = db.session.query(cosmic).filter(cosmic.cosmic_id == (cosmic_id)).all()[0]

@@ -44,7 +44,7 @@ def cert(form):
         box_size=10,
         border=4,
     )
-    qr.add_data(f'{Config.DOMAIN}cosmicBody_{form.cosmic_id}')
+    qr.add_data(f'{Config.DOMAIN}cosmicBody/{form.cosmic_id}')
     qr.make(fit=True)
     qr_code = qr.make_image(fill_color="black", back_color="white")
     (width, height) = img.size

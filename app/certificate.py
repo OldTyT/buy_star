@@ -25,7 +25,9 @@ def cert(form):
     w, h = idraw.textsize(text, font=font)
     x = (MAX_W - w) / 2
     y = (MAX_H - h) / 2
-    idraw.text((x, y + 230), text, (49, 52, 76), font=font, align="center")
+    if fontsize > 250:
+        y -= 50
+    idraw.text((x, y + 250), text, (49, 52, 76), font=font, align="center")
     text = fill(f"Имеет право владения планетой {form.name_cosmic}", 45)
     font = ImageFont.truetype(f"app/font/Shelley_Volante.ttf", size=100)
     w, h = idraw.textsize(text, font=font)

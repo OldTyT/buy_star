@@ -17,7 +17,7 @@ MAX_R = 20
 
 @app.route("/get_my_ip", methods=["GET"])
 def get_my_ip():
-    return request.remote_addr
+    return request.headers.get('User-Agent')
 
 
 @app.before_request
@@ -27,16 +27,16 @@ def hook():
     if difference.seconds >= TIME_SESSION:
         USERS_AUTH.clear()
         START_TIME_AUTH[0] = datetime.datetime.now()
-    if USERS_AUTH.get(request.remote_addr):
-        USERS_AUTH.get(request.remote_addr)[1] += 1
-        if USERS_AUTH.get(request.remote_addr)[1] >= MAX_R:
+    if USERS_AUTH.get(request.headers.get('User-Agent')):
+        USERS_AUTH.get(request.headers.get('User-Agent'))[1] += 1
+        if USERS_AUTH.get(request.headers.get('User-Agent'))[1] >= MAX_R:
             return "503", 503
-        print(USERS_AUTH.get(request.remote_addr))
+        print(USERS_AUTH.get(request.headers.get('User-Agent')))
     else:
         data = []
         data.append(datetime.datetime.now())
         data.append(0)
-        USERS_AUTH.update({request.remote_addr: data})
+        USERS_AUTH.update({request.headers.get('User-Agent'): data})
 
 @app.route('/favicon.ico', methods=['GET', 'POST'])
 def favicon():
